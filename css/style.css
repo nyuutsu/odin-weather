@@ -1,0 +1,59 @@
+body {
+	padding: 1rem;
+}
+
+body > * {
+	padding: 1rem;
+}
+
+.header {
+	display: flex;
+}
+
+.logo {
+	width: 10rem;
+}
+
+.text-for-logo > * {
+	padding: 1rem;
+}
+
+.tagline {
+	font-size: x-large;
+}
+
+.subtagline {
+	font-size: large;
+	font-style: italic;
+}
+
+.main {
+	display: flex;
+}
+
+.main > * {
+	width: 30rem;
+	margin: 1rem;
+}
+
+.fieldset {
+	border: 1px solid black;
+}
+
+.fieldset > * {
+	padding: 1rem;	
+}
+
+.legend {
+	margin-left: 1rem;
+}
+
+.input {
+	width: 20rem;
+}
+
+.button {
+	border: none;
+	background-color: paleturquoise;
+	padding: 1rem;
+}
