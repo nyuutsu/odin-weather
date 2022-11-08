@@ -11,52 +11,62 @@
   <body>
     <header class="header">
       <div class="logo-wrapper">
-        <img src="images/pgru-1-plains.jpg" alt="" class="logo">
+        <img src="images/predictive-forecasting-blog-scribble.png" alt="" class="logo">
       </div>
       <div class="text-for-logo">
-        <h1 class="tagline">
-          get 📉 low 📉 prices on 😩 used 😩 weather here at "weather.su"
-        </h1>
-        <h3 class="subtagline">
-          This is the official weather website of the soviet union
-        </h3>
+        <h1 class="tagline">Weather Superforecasting!!</h1>
+        <h3 class="subtagline">A simple site for checking the weather</h3>
       </div>
     </header>
     <main class="main">
-      <div class="search-wrapper">        
-        <form action="" onsubmit="process(this); return false;" class="form">
-          <fieldset class="fieldset">
-            <legend class="legend">search for something here</legend>
-            <div class="form-item">
-              <label for="input">location</label>
-              <input type="text" id="input" placeholder="e.g. 'Apocalypse Peaks, Antarctica'" class="input">
+      <div class="main-column">
+        <div class="search-block">        
+          <form action="" onsubmit="process(this); return false;" class="form">
+            <fieldset class="fieldset">
+              <legend class="legend">search for something here</legend>
+              <div class="form-item">
+                <label for="input">location</label>
+                <input type="text" id="input" placeholder="e.g. 'London'" class="input">
+              </div>
+              <div class="search">
+                <button class="button">get a weather</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="result-block">
+            <div>
+              <span>Location: </span>
+              <span class="name"></span>
+              <span class="country"></span>
             </div>
-            <div class="search">
-              <button class="button">get a weather</button>
+            <div>
+              <span>Summary: </span>
+              <span class="summary"></span>
             </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="result-wrapper">
-        <fieldset class="fieldset">
-          <legend class="legend result">result</legend>
-          <div>
-            <span>Location: </span>
-            <span class="result-name"></span>
+            <div>
+              <span>Description: </span>
+              <span class="description"></span>
+            </div>
+            <div>
+              <span>Temperature: </span>
+              <span class="temperature-f temp-result"></span>
+              <span class="temperature-c temp-result hidden"></span>
+            </div>
+            <div>
+              <span>Lat, Lon: </span>
+              <span class="lat"></span>
+              <span class="lon"></span>
+            </div>
+          <div class="buttons">
+            <button class="button small" id="tempButton">Unit</button>
           </div>
-          <div>
-            <span>Summary: </span>
-            <span class="result-summary"></span>
-          </div>
-          <div>
-            <span>Description: </span>
-            <span class="result-description"></span>
-          </div>
-          <div>
-            <span>Temperature: </span>
-            <span class="result-temp"></span>
-          </div>
-        </fieldset>
+        </div>
+      </div>      
+      <div class="side-column">
+        <div class="image-block">
+          <img src="/images/unknown" alt="" id="weatherPic">
+        </div>
       </div>
     </main>    
   </body>

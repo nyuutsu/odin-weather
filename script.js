@@ -1,40 +1,48 @@
-/*Use everything we’ve been discussing to create a weather forecast site using the weather API from the previous lesson. You should be able to search for a specific location and toggle displaying the data in Fahrenheit or Celsius.
-
-You should change the look of the page based on the data, maybe by changing the color of the background or by adding images that describe the weather. (You could even use the Giphy API to find appropriate weather-related gifs and display them). Feel free to use promises or async/await in your code, though you should try to become comfortable with both.*/
-
-const resultName = document.querySelector('.result-name')
-const resultSummary = document.querySelector('.result-summary')
-const resultDescription = document.querySelector('.result-description')
-const resultTemp = document.querySelector('.result-temp')
+const destinationUnknown = {
+  name: "Unknown",
+  country: "",
+  summary: "Unknown",
+  description: "",
+  ["temperature-c"]: "",
+  ["temperature-f"]: "",
+  lon: "",
+  lat: ""
+}
 
 const getDataFromAPI = async (query) => fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query.input.value}&APPID=7fb485fb21d0ea78ca5d85374b7c2ff3`, {mode: 'cors'})
 
-
 const parseDataFromAPI = async (dataFromAPI) => dataFromAPI.json()
 
-const reduceDataFromAPI = async (data) => {
+const synthesizeData = async (data) => {
   return {
     name: data.name,
+    country: `(${data.sys.country})`,
     summary: data.weather[0]["main"],
     description: data.weather[0]["description"],
-    temperature: data.main.temp,
-    coord: {
-      lon: data.coord.lon,
-      lat: data.coord.lat
-    }
+    ["temperature-f"]: `${Math.round(1.8 * (Number(data.main.temp)-273) + 32)}f`,
+    ["temperature-c"]: `${Math.round(Number(data.main.temp)-273.15)}c`,
+    lon: `${data.coord.lon})`,
+    lat: `(${data.coord.lat},`
   }
 }
 
-const renderWeather = async (weather) => {
-  resultName.textContent = weather.name
-  resultSummary.textContent = weather.summary
-  resultDescription.textContent = weather.description
-  resultTemp.textContent = weather.temperature
+const renderWeather = async (weather) => Object.keys(weather).forEach(key => document.querySelector(`.${key}`).textContent = weather[key])
+
+const setImage = async (weather) => document.getElementById('weatherPic').src = `images/${weather.summary}`
+
+const process = async (input) => { 
+  const dataFromAPI = await getDataFromAPI(input)
+  if(dataFromAPI.ok) {  
+    const parsedData = await parseDataFromAPI(dataFromAPI)
+    const preparedData = await synthesizeData(parsedData)
+    renderWeather(preparedData)
+    setImage(preparedData)
+  } else {
+    renderWeather(destinationUnknown)
+    setImage(destinationUnknown)
+  }
 }
 
-const process = async (input) => {
-  const dataFromAPI = await getDataFromAPI(input)
-  const parsedData = await parseDataFromAPI(dataFromAPI)
-  const reducedData = await reduceDataFromAPI(parsedData)
-  renderWeather(reducedData)
-}
+tempButton.addEventListener('click', () => {
+  document.querySelectorAll('.temp-result').forEach((item) => {item.classList.toggle('hidden')})
+})

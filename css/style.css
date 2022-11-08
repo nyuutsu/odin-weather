@@ -2,16 +2,19 @@ body {
 	padding: 1rem;
 }
 
-body > * {
-	padding: 1rem;
-}
-
 .header {
 	display: flex;
 }
 
 .logo {
 	width: 10rem;
+	border-radius: 5rem;
+	border: 1px solid black;
+}
+
+.text-for-logo {
+	padding-top: 1rem;
+	padding-left: 1rem;
 }
 
 .text-for-logo > * {
@@ -29,31 +32,61 @@ body > * {
 
 .main {
 	display: flex;
+	flex-wrap: wrap;
 }
 
-.main > * {
-	width: 30rem;
-	margin: 1rem;
+.main-column {
+	display: flex;
+	flex-direction: column;
 }
 
-.fieldset {
+.main-column > *, .side-column > * {
+	margin: 0.25rem;
+	padding: 1rem;
 	border: 1px solid black;
-}
-
-.fieldset > * {
-	padding: 1rem;	
 }
 
 .legend {
 	margin-left: 1rem;
 }
 
+.form-item {
+	padding: 0.25rem;
+}
+
 .input {
-	width: 20rem;
+	width: 15rem;
 }
 
 .button {
 	border: none;
-	background-color: paleturquoise;
+	background-color: lightpink;
 	padding: 1rem;
+}
+
+.result-block {
+	position: relative;
+}
+
+.result-block > * {
+	padding: 0.25rem;
+}
+
+.buttons {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.button.small {
+	padding: 0.75rem;
+}
+
+.hidden {
+	display: none;
+}
+
+#weatherPic {
+	max-width: 600px;
 }
